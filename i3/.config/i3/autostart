@@ -1,0 +1,54 @@
+#!/bin/sh
+
+# Wait for program coming up
+wait_for_program () {
+  n=0
+  while true
+  do
+    # PID of last background command
+    if xdotool search --onlyvisible --pid $! 2>/dev/null; then
+      break
+    else
+      if [ $n -eq 200 ]; then
+        notify-send -u critical "Error during start: last program $! did not started fast enough"
+        break
+      else
+        n=`expr $n + 1`
+        sleep 0.1
+      fi
+    fi
+  done
+}
+
+# Terminal
+TERMINAL=urxvt256c-ml
+
+## Determine connected monitors
+HDMI_YES=0
+DP_YES=0
+ANY_YES=0
+xrandr | grep -Eq "DP-[12345]-[12345] connected" && DP_YES=1 && ANY_YES=1
+xrandr | grep -Eq "HDMI-[12345] connected" && HDMI_YES=1 && ANY_YES=1
+DP=$(xrandr | grep -E "DP-[12345]-[12345] connected" | grep -oE "DP-[12345]-[12345]")
+HDMI=$(xrandr | grep -E "HDMI-[12345] connected" | grep -oE "HDMI-[12345]")
+
+if [ "$DP_YES" -eq 1 ]; then
+    xrandr --output eDP-1 --mode 1920x1080 --below $DP --output $DP --mode 1920x1080
+fi
+
+if [ "$DP_YES" -eq 1 ]; then
+    for w in 1 2 3 4 5; do
+        i3-msg "workspace $w; move workspace to output $DP"
+    done
+    for w in 6 7 8 9 10; do
+        i3-msg "workspace $w; move workspace to output eDP-1"
+    done
+fi
+
+#pointer_control enable
+xrefresh &
+
+# Update dmenu cache
+dmenu_path >/dev/null &
+
+exit 0

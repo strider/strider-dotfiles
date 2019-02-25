@@ -1,0 +1,74 @@
+[user]
+    name = Gael Chamoulaud
+    email = gchamoul@redhat.com
+    signingkey = A7F4B301
+[github]
+    user = strider
+[commit]
+    gpgsign = false
+[push]
+    default = upstream
+[core]
+    editor = vim
+    pager = less -FSRX
+    autocrlf = input
+	excludesfile = ~/.gitignore
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+[merge]
+    tool = vimdiff
+    prompt = false
+[mergetool "splice"]
+    cmd = "vimx -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+    trustExitCode = true
+[alias]
+    br = branch --all
+    brd = branch -D
+    ci = commit -v
+    co = checkout
+    nb = checkout -b
+    dh = diff HEAD
+    rh = reset --soft HEAD^
+    st = status -sb
+    fup = log --since '1 day ago' --oneline --author='Gael Chamoulaud <gchamoul@redhat.com>'
+    springcleaning = for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:short)'
+    l = log
+    lh = log --graph
+    la = "!git lh --date-order --all 2> /dev/null"
+    lb = log --graph --simplify-by-decoration
+    lba = "!git lb --all"
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    ;lg = log --graph --pretty=format:'%Cred%h..%Creset - %s %Cgreen(%cr)%Creset - %an' --abbrev-commit --date=relative
+    lg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lgn = log --pretty=format:'%Cred%h%Creset .::. %s .::. %Cblue(%cr)%Creset .::. %Cgreen%an%Creset' --abbrev-commit --show-notes=*
+    h = !git --no-pager log --graph -n 15
+    a = !git --no-pager la -n 15
+    sm = submodule
+    smu = submodule foreach git pull origin master
+    up = "!git fetch upstream && git rebase upstream/master"
+    pr = "!f() { git fetch origin refs/pull/$1/head:pr/$1 && git co pr/$1; } ; f"
+    dl = "!git ll -1"
+    al = "!git config -l | grep alias | cut -c 7-"
+    pr = "!f() { git fetch $1 pull/$2/head:pr-$2 && git checkout pr-$2; }; f"
+    # [s]ubmodule
+    sc  = submodule add
+    scm = submodule foreach --recursive git checkout master
+    sl  = submodule --quiet foreach --recursive echo $path  on  $(git rev-parse --abbrev-ref HEAD)
+    sr  = submodulerm
+    ss  = !git submodule sync && git submodule update --init --recursive # [s]ync
+    su  = submodule foreach --recursive git pull # [u]pdate
+[sendemail]
+    smtpencryption = tls
+    smtpserver = smtp.corp.redhat.com
+    smtpuser = gchamoul@redhat.com
+    smtpserverport = 993
+    confirm = auto
+[credential]
+    helper = cache --timeout=3600
+[gitreview]
+    username = gchamoul
+[diff]
+    renamelimit = 2000
+    renames = true

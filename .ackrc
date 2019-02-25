@@ -1,0 +1,32 @@
+# Based on: https://github.com/nixme/dotfiles/blob/master/.ackrc
+--color
+--follow
+--group
+--smart-case
+
+# case-insensitive searching
+--ignore-case
+
+# directory ignores
+--ignore-dir=.git
+--ignore-dir=.svn
+--ignore-dir=.idea
+--ignore-dir=vendor
+--ignore-dir=.bundle
+--ignore-dir=.test
+--ignore-dir=tmp
+--ignore-dir=.tox
+--ignore-dir=gems
+--ignore-dir=log
+--ignore-dir=coverage
+--ignore-dir=spec/fixtures
+--ignore-dir=build
+--ignore-dir=dist
+--ignore-dir=lib/python2.7/site-packages
+--ignore-dir=lib64/python2.7/site-packages
+--ignore-dir=usr/local/share
+
+# sort results by filename
+--sort-files
+
+--type-set=puppet=.pp

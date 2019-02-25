@@ -1,0 +1,146 @@
+Xft.dpi               : 96
+Xft.antialias         : 1
+Xft.hinting           : 1
+Xft.hintstyle         : hintslight
+Xft.rgba              : rgba
+Xft.lcdfilter         : lcddefault
+Xcursor.theme         : Oxygen_Yellow
+*customization        : -color
+Xterm*termName        : xterm-256color
+URxvt*termName        : rxvt-256color
+URxvt.transparent     : true
+URxvt*shading         : 25
+!URxvt*fading          : 25
+URxvt*saveLines       : 65535
+!URxvt.depth           : 32
+URxvt.scrollBar       : off
+URxvt.borderless      : true
+URxvt.perl-lib        : /home/gchamoul/.config/urxvt
+URxvt.perl-ext-common : default,matcher,selection-to-clipboard,selection,tabbedex,font-size
+URxvt.url-launcher    : /usr/bin/firefox
+URxvt.matcher.button  : 1
+URxvt.keysym.C-Delete : perl:matcher:last
+URxvt.keysym.M-Delete : perl:matcher:list
+URxvt*font            : xft:Terminus for Powerline:style=Regular:size=08
+URxvt*letterspace     : -1
+URxvt*background      : #1b1918
+
+! Tabbedex features
+URxvt.new-button:yes
+!URxvt.title:no
+URxvt.autohide:yes
+URxvt.no-tabbedex-keys:yes
+URxvt.reopen-on-close:no
+! Tabbedex colors
+!URxvt*tabbar-fg: 244
+URxvt*tabbar-bg: 16
+!URxvt*tab-fg: 255
+!URxvt*tab-bg: 52
+!URxvt*title-fg: 244
+!URxvt*title-bg: 16
+
+! `font-size` plugin
+URxvt.keysym.C-minus: perl:font-size:decrease
+URxvt.keysym.C-equal: perl:font-size:increase
+! The default font increase step size is 1. This is for portability across all
+! fonts (some fonts do not support particular font sizes). Because changing font
+! size only really makes sense for anti-aliased fonts (Terminus is bitmapped),
+! and because anti-aliased fonts support any size, it makes sense to just use a
+! size step of 4 for faster transitions between font size changes.
+URxvt.font-size.step: 4
+
+! Tabbedex keybindings (4-1: Super + Alt)
+URxvt.keysym.4-1-C-Left: perl:tabbedex:move_tab_left
+URxvt.keysym.4-1-C-Right: perl:tabbedex:move_tab_right
+URxvt.keysym.Control-Tab: perl:tabbedex:next_tab
+URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
+
+! Base16 PhD
+! Scheme: Hennig Hasemann (http://leetless.de/vim.html)
+
+#define base00 #061229
+#define base01 #2a3448
+#define base02 #4d5666
+#define base03 #717885
+#define base04 #9a99a3
+#define base05 #b8bbc2
+#define base06 #dbdde0
+#define base07 #ffffff
+#define base08 #d07346
+#define base09 #f0a000
+#define base0A #fbd461
+#define base0B #99bf52
+#define base0C #72b9bf
+#define base0D #5299bf
+#define base0E #9989cc
+#define base0F #b08060
+
+*.foreground:   base05
+!#ifdef background_opacity
+!*.background:   [background_opacity]base00
+!#else
+!*.background:   #1b1918
+!#endif
+*.cursorColor:  base05
+
+*.color0:       base00
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
+
+*.color8:       base03
+*.color9:       base08
+*.color10:      base0B
+*.color11:      base0A
+*.color12:      base0D
+*.color13:      base0E
+*.color14:      base0C
+*.color15:      base07
+
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+*.color16:      base09
+*.color17:      base0F
+*.color18:      base01
+*.color19:      base02
+*.color20:      base04
+*.color21:      base06
+
+URxvt*cursorBlink                               : false
+
+!-------------------------------------------------------------------------------
+! Rofi color theme
+!
+! Based on the Gruvbox color scheme for Vim by morhetz
+! https://github.com/morhetz/gruvbox
+!
+! File: gruvbox-dark-hard.theme
+! Desc: Gruvbox dark (hard contrast) color theme for Rofi
+! Author: bardisty <b@bah.im>
+! Source: https://github.com/bardisty/gruvbox-rofi
+! Modified: Sat Oct 22 2016 03:12:10 PDT -0700
+!-------------------------------------------------------------------------------
+! Enable the extended coloring options
+rofi.padding: 1
+rofi.lines: 5
+rofi.borderwidth: 1
+rofi.opacity: 10
+rofi.font: Terminus for Powerline 08
+!rofi.location: 7
+rofi.yoffset: 0
+rofi.xoffset: 0
+rofi.width: 40
+rofi.fixed_num_lines: 1
+rofi.hmode: false
+!rofi.terminal: st
+rofi.hide-scrollbar: true
+rofi.modi: window,run,drun,ssh,combi
+rofi.theme: /usr/share/rofi/themes/Arc-Dark.rasi
+rofi.sidebar-mode: true
+rofi.terminal: urxvt256c-ml
+rofi.show-icons: true
+rofi.drun-icon-theme: Minimal
